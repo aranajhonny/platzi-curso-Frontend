@@ -1,3 +1,4 @@
+@import "nib"
 gris_oscuro = #333333
 gris_claro = #818181
 gris_mas_claro = #cecece
@@ -168,6 +169,7 @@ ul
 		height 5px
 		width 30%
 		position relative
+		animation 30s state infinite linear
 	.circle
 		background black
 		border-radius 50%
@@ -176,6 +178,18 @@ ul
 		right 0
 		top -1px
 		width 10px
+		animation 1s circle infinite
+@keyframes state
+	0%
+		width 0
+	100%
+		width 100%
+@keyframes circle
+	0%
+		transform scale(1)
+	100%
+		transform scale(2)
+		opacity 0
 .container
 	font-size 0
 	text-align center
@@ -219,13 +233,41 @@ ul
 	right .5em
 	color gris_claro
 	font-size 1.2em
-//Media queries
-// tablet
+.isotipo
+		width 122px
+.logo
+	padding 1.3em 0
+	overflow hidden
+	background white
+	display none
+.wrap
+	width 1024px
+.avatar
+	width 38px
+	height 38px
+.username
+	color gris_claro
+	position relative
+	top 9px
+	margin-left .5em
+	&:after
+		content ""
+		border-left 7px solid transparent
+		border-right 7px solid transparent
+		border-top 9px solid gris_claro
+		display inline-block
+		margin-left .4em
 .playlist
 	display none
-.logo
-	display none
-
+	width 22em
+	padding 0 2em
+	border-left 1px solid gris_claro
+	.list
+		list-style none
+	.item
+		padding 1em 0
+	.action
+		font-size .8em
 @media screen and (min-width:480px)
 	.song
 		&:nth-child(even)
@@ -273,46 +315,14 @@ ul
 		.title
 			display none
 			padding 1em
-	.isotipo
-		width 122px
-	.logo
-		display block
-		padding 1.3em 0
-		overflow hidden
-		background white
-	.wrap
-		width 1024px
-	.avatar
-		width 38px
-		height 38px
-	.username
-		color gris_claro
-		position relative
-		top 9px
-		margin-left .5em
-		&:after
-			content ""
-			border-left 7px solid transparent
-			border-right 7px solid transparent
-			border-top 9px solid gris_claro
-			display inline-block
-			margin-left .4em
 	.music
 		width 32.5em
 		float left
 		.description
 			display none
+	.logo
 	.playlist
 		display block
-		width 22em
-		padding 0 2em
-		border-left 1px solid gris_claro
-		.list
-			list-style none
-		.item
-			padding 1em 0
-		.action
-			font-size .8em
 
 
 
