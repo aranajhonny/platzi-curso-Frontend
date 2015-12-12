@@ -2,9 +2,12 @@ var gulp = require('gulp')
 var stylus = require('gulp-stylus')
 var nib = require('nib')
 var minify = require('gulp-minify-css')
-var serve = require('gulp-serve');
+var connect = require('gulp-connect');
+var historyApiFallback = require('connect-history-api-fallback');
+var watch = require('gulp-watch');
+var webserver = require('gulp-webserver');
 
-gulp.task('build', ['styl', 'serve'])
+gulp.task('build', ['styl','watch','webserver'])
 
 gulp.task('styl', function() {
   return gulp.src('stylus/*.styl') // entry point de styl
@@ -13,11 +16,15 @@ gulp.task('styl', function() {
     .pipe(gulp.dest('css/'))
 })
 
-gulp.task('serve', serve('./'));
-gulp.task('serve-prod', serve({
-  root: ['./'],
-  port: 80,
-  middleware: function(req, res) {
-    // custom optional middleware 
-  }
-}));
+gulp.task('watch', function() {
+  gulp.watch('./stylus/*.styl', ['styl'])
+})
+
+gulp.task('webserver', function() {
+  gulp.src('./')
+    .pipe(webserver({
+      livereload: true,
+      directoryListing: true,
+      open: true
+    }));
+});
